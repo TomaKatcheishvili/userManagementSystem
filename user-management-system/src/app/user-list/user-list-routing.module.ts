@@ -14,14 +14,6 @@ const routes: Routes = [
             (m) => m.UserProfileModule
           ),
       },
-      {
-        path: 'logs/:email', // Add this line for the sidebar
-        outlet: 'sidebar',
-        loadChildren: () =>
-          import('../user-logs-sidebar/user-logs-sidebar.module').then(
-            (m) => m.UserLogsSidebarModule
-          ),
-      },
     ],
   },
 ];
