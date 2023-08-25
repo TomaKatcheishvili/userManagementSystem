@@ -7,6 +7,10 @@ export const mockUsers: IUser[] = [
     email: 'john.doe@example.com',
     phoneNumber: 1234567890,
     isActive: true,
+    logs: [
+      { date: new Date('2023-08-01'), action: 'Login' },
+      { date: new Date('2023-08-02'), action: 'Logout' },
+    ],
   },
   {
     firstName: 'Jane',
@@ -14,6 +18,10 @@ export const mockUsers: IUser[] = [
     email: 'jane.smith@example.com',
     phoneNumber: 9876543210,
     isActive: false,
+    logs: [
+      { date: new Date('2023-08-03'), action: 'Login' },
+      { date: new Date('2023-08-04'), action: 'Logout' },
+    ],
   },
   {
     firstName: 'Michael',
@@ -21,5 +29,9 @@ export const mockUsers: IUser[] = [
     email: 'michael.johnson@example.com',
     phoneNumber: 5551234567,
     isActive: true,
+    logs: [
+      { date: new Date('2023-08-05'), action: 'Login' },
+      { date: new Date('2023-08-06'), action: 'Logout' },
+    ],
   },
 ];

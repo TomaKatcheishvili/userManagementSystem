@@ -4,4 +4,10 @@ export interface IUser {
   email: string;
   phoneNumber: number;
   isActive: boolean;
+  logs: ILog[];
+}
+
+export interface ILog {
+  date: Date;
+  action: string;
 }

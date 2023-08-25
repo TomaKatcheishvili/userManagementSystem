@@ -1,1 +1,10 @@
-<p>user-profile works!</p>
+<div *ngIf="selectedUser">
+  <p>Name: {{ selectedUser.firstName }} {{ selectedUser.lastName }}</p>
+  <p>Email: {{ selectedUser.email }}</p>
+  <p>Phone Number: {{ selectedUser.phoneNumber }}</p>
+  <p>Is Active: {{ selectedUser.isActive }}</p>
+</div>
+
+<div *ngIf="!selectedUser">
+  <p>No user selected.</p>
+</div>

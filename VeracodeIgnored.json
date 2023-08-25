@@ -1,0 +1,28 @@
+[
+  {
+    "CWEId": "117",
+    "FlawMatch": {
+      "ProcedureHash": "1173815442",
+      "PrototypeHash": "3529347915",
+      "FlawHash": "3132762339",
+      "FlawHashCount": "1",
+      "FlawHashOrdinal": "1",
+      "CauseHash": "1176028798",
+      "CauseHashCount": "1",
+      "CauseHashOrdinal": "1",
+      "CauseHash2": "1522093433",
+      "CauseHash2Ordinal": "3"
+    },
+    "Files": {
+      "SourceFile": {
+        "File": "user-profile.component.ts",
+        "Line": "18",
+        "FunctionName": "lambda_1",
+        "QualifiedFunctionName": "lambda_1",
+        "FunctionPrototype": "lambda_1(: any,  : any, ...) : any",
+        "Scope": "UNKNOWN",
+        "AbsoluteFilePath": "/Users/user/Documents/GitHub/userManagementSystem/user-management-system/src/app/user-profile/user-profile.component.ts"
+      }
+    }
+  }
+]

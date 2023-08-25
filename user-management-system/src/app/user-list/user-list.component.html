@@ -1,4 +1,19 @@
-<ol *ngFor="let user of users">
-  <li>{{ user.firstName }} {{ user.lastName }}</li>
-  <button>See User</button>
-</ol>
+<div class="full-user-view">
+  <div class="user-list">
+    <ol *ngFor="let user of users">
+      <li>
+        <p appHighlight [user]="user">
+          {{ user.firstName }} {{ user.lastName }}
+        </p>
+
+        <button class="button-class" (click)="navigateToUserProfile(user)">
+          See User
+        </button>
+      </li>
+    </ol>
+  </div>
+
+  <div class="user-profile">
+    <app-user-profile [selectedUser]="selectedUser"></app-user-profile>
+  </div>
+</div>
