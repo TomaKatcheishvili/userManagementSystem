@@ -1,6 +1,6 @@
-import { Component, QueryList, ViewChildren } from '@angular/core';
-import { mockUsers } from '../mock-data/users-mock-data';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { IUser } from '../models/user-model';
+import { UserServiceService } from '../services/user-service.service';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 
 @Component({
@@ -8,14 +8,17 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css'],
 })
-export class UserListComponent {
-  users: IUser[] = mockUsers;
+export class UserListComponent implements OnInit {
+  users!: IUser[];
   selectedUser: IUser | undefined;
 
   @ViewChildren(UserProfileComponent)
   userProfileComponents!: QueryList<UserProfileComponent>;
 
-  constructor() {}
+  constructor(private userService: UserServiceService) {}
+  ngOnInit(): void {
+    this.getUsers();
+  }
 
   navigateToUserProfile(user: IUser) {
     this.selectedUser = user;
@@ -23,6 +26,6 @@ export class UserListComponent {
   }
 
   getUsers() {
-    // this.firebase.database;
+    this.users = this.userService.getUsers();
   }
 }

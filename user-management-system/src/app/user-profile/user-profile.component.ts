@@ -5,7 +5,6 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { IUser } from '../models/user-model';
 
 @Component({
@@ -18,11 +17,7 @@ import { IUser } from '../models/user-model';
 export class UserProfileComponent implements OnInit {
   @Input() selectedUser!: IUser | undefined;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.route.data.subscribe((data) => {
-      this.selectedUser = data['user'];
-    });
-  }
+  ngOnInit() {}
 }
