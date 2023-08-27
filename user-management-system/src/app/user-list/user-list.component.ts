@@ -11,7 +11,6 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
 export class UserListComponent {
   users: IUser[] = mockUsers;
   selectedUser: IUser | undefined;
-  isUserProfileVisible = false;
 
   @ViewChildren(UserProfileComponent)
   userProfileComponents!: QueryList<UserProfileComponent>;
@@ -20,7 +19,10 @@ export class UserListComponent {
 
   navigateToUserProfile(user: IUser) {
     this.selectedUser = user;
-    this.isUserProfileVisible = true;
     console.log(this.userProfileComponents);
+  }
+
+  getUsers() {
+    // this.firebase.database;
   }
 }

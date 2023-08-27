@@ -1,0 +1,116 @@
+<div class="create-user-container">
+  <h2 class="heading">Add New User</h2>
+  <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()" class="user-form">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        class="input-field"
+        formControlName="username"
+      />
+      <div
+        *ngIf="addUserForm.get('username')?.hasError('uniqueUsername')"
+        class="error-message"
+      >
+        Username is already taken.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        id="firstName"
+        class="input-field"
+        formControlName="firstName"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        id="lastName"
+        class="input-field"
+        formControlName="lastName"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="emails">Emails</label>
+      <div formArrayName="emails">
+        <div
+          *ngFor="let emailCtrl of emails.controls; let i = index"
+          class="email-group"
+        >
+          <div class="input-group">
+            <input
+              type="email"
+              [formControlName]="i"
+              class="input-field"
+              placeholder="Email {{ i + 1 }}"
+            />
+            <button
+              type="button"
+              class="remove-button"
+              (click)="removeEmail(i)"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+        <button type="button" class="add-button" (click)="addEmail()">
+          Add Email
+        </button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumbers">Phone Numbers</label>
+      <div formArrayName="phoneNumbers">
+        <div
+          *ngFor="let phoneNumberCtrl of phoneNumbers.controls; let i = index"
+          class="phone-group"
+        >
+          <div class="input-group">
+            <input
+              type="text"
+              [formControlName]="i"
+              class="input-field"
+              placeholder="Phone Number {{ i + 1 }}"
+            />
+            <button
+              type="button"
+              class="remove-button"
+              (click)="removePhoneNumber(i)"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+        <button type="button" class="add-button" (click)="addPhoneNumber()">
+          Add Phone Number
+        </button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="isActive">Is Active</label>
+      <input
+        type="checkbox"
+        id="isActive"
+        class="checkbox-field"
+        formControlName="isActive"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="submit-button"
+      [disabled]="addUserForm.invalid"
+    >
+      Add User
+    </button>
+  </form>
+</div>

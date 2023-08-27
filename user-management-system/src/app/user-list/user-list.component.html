@@ -16,4 +16,14 @@
   <div class="user-profile">
     <app-user-profile [selectedUser]="selectedUser"></app-user-profile>
   </div>
+
+  <router-outlet></router-outlet>
+
+  <router-outlet name="sidebar"></router-outlet>
 </div>
+
+<button class="button-class" [routerLink]="['create-user']">
+  Create New User
+</button>
+
+<button (click)="getUsers()">getUsers</button>

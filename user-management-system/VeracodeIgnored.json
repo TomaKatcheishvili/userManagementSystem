@@ -1,0 +1,106 @@
+[
+  {
+    "CWEId": "117",
+    "FlawMatch": {
+      "ProcedureHash": "80982030",
+      "PrototypeHash": "3529347915",
+      "FlawHash": "1113665706",
+      "FlawHashCount": "1",
+      "FlawHashOrdinal": "1",
+      "CauseHash": "3480429582",
+      "CauseHashCount": "1",
+      "CauseHashOrdinal": "1",
+      "CauseHash2": "438364638",
+      "CauseHash2Ordinal": "1"
+    },
+    "Files": {
+      "SourceFile": {
+        "File": "user-logs-sidebar.component.ts",
+        "Line": "11",
+        "FunctionName": "lambda_1",
+        "QualifiedFunctionName": "lambda_1",
+        "FunctionPrototype": "lambda_1(: any,  : any, ...) : any",
+        "Scope": "UNKNOWN",
+        "AbsoluteFilePath": "/Users/user/Documents/GitHub/userManagementSystem/user-management-system/src/app/user-list/user-logs-sidebar/user-logs-sidebar.component.ts"
+      }
+    }
+  },
+  {
+    "CWEId": "798",
+    "FlawMatch": {
+      "ProcedureHash": "2462818449",
+      "PrototypeHash": "211846691",
+      "FlawHash": "511086138",
+      "FlawHashCount": "1",
+      "FlawHashOrdinal": "1",
+      "CauseHash": "1073705042",
+      "CauseHashCount": "1",
+      "CauseHashOrdinal": "1",
+      "CauseHash2": "0",
+      "CauseHash2Ordinal": "0"
+    },
+    "Files": {
+      "SourceFile": {
+        "File": "users-mock-data.ts",
+        "Line": "5",
+        "FunctionName": "!main",
+        "QualifiedFunctionName": "!main",
+        "FunctionPrototype": "!main() : void",
+        "Scope": "UNKNOWN",
+        "AbsoluteFilePath": "/Users/user/Documents/GitHub/userManagementSystem/user-management-system/src/app/mock-data/users-mock-data.ts"
+      }
+    }
+  },
+  {
+    "CWEId": "798",
+    "FlawMatch": {
+      "ProcedureHash": "2462818449",
+      "PrototypeHash": "211846691",
+      "FlawHash": "498731275",
+      "FlawHashCount": "1",
+      "FlawHashOrdinal": "1",
+      "CauseHash": "2384616866",
+      "CauseHashCount": "1",
+      "CauseHashOrdinal": "1",
+      "CauseHash2": "0",
+      "CauseHash2Ordinal": "0"
+    },
+    "Files": {
+      "SourceFile": {
+        "File": "users-mock-data.ts",
+        "Line": "17",
+        "FunctionName": "!main",
+        "QualifiedFunctionName": "!main",
+        "FunctionPrototype": "!main() : void",
+        "Scope": "UNKNOWN",
+        "AbsoluteFilePath": "/Users/user/Documents/GitHub/userManagementSystem/user-management-system/src/app/mock-data/users-mock-data.ts"
+      }
+    }
+  },
+  {
+    "CWEId": "798",
+    "FlawMatch": {
+      "ProcedureHash": "2462818449",
+      "PrototypeHash": "211846691",
+      "FlawHash": "623365857",
+      "FlawHashCount": "1",
+      "FlawHashOrdinal": "1",
+      "CauseHash": "1342699318",
+      "CauseHashCount": "1",
+      "CauseHashOrdinal": "1",
+      "CauseHash2": "0",
+      "CauseHash2Ordinal": "0"
+    },
+    "Files": {
+      "SourceFile": {
+        "File": "users-mock-data.ts",
+        "Line": "30",
+        "FunctionName": "!main",
+        "QualifiedFunctionName": "!main",
+        "FunctionPrototype": "!main() : void",
+        "Scope": "UNKNOWN",
+        "AbsoluteFilePath": "/Users/user/Documents/GitHub/userManagementSystem/user-management-system/src/app/mock-data/users-mock-data.ts"
+      }
+    }
+  }
+]

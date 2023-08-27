@@ -2,6 +2,7 @@ import { IUser } from '../models/user-model';
 
 export const mockUsers: IUser[] = [
   {
+    username: 'johndoe',
     firstName: 'John',
     lastName: 'Doe',
     email: 'john.doe@example.com',
@@ -13,6 +14,8 @@ export const mockUsers: IUser[] = [
     ],
   },
   {
+    username: 'janesmith',
+
     firstName: 'Jane',
     lastName: 'Smith',
     email: 'jane.smith@example.com',
@@ -24,6 +27,7 @@ export const mockUsers: IUser[] = [
     ],
   },
   {
+    username: 'michaeljohnson',
     firstName: 'Michael',
     lastName: 'Johnson',
     email: 'michael.johnson@example.com',

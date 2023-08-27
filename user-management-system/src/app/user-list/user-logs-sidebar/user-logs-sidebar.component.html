@@ -1,0 +1,17 @@
+<div class="user-logs-sidebar">
+  <h3>User Logs</h3>
+  <div *ngIf="users.length > 0; else noLogs">
+    <div class="user-log" *ngFor="let user of users">
+      <h4>{{ user.firstName }} {{ user.lastName }}</h4>
+      <ul class="log-list">
+        <li class="log-item" *ngFor="let log of user.logs">
+          <span class="log-date">{{ log.date | date }}</span>
+          <span class="log-action">{{ log.action }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <ng-template #noLogs>
+    <p>No logs available.</p>
+  </ng-template>
+</div>

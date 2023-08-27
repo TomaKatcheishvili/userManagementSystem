@@ -1,0 +1,33 @@
+.user-logs-sidebar {
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+}
+
+.user-log {
+  margin-bottom: 20px;
+}
+
+h4 {
+  margin-bottom: 10px;
+}
+
+.log-list {
+  list-style: none;
+  padding: 0;
+}
+
+.log-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.log-date {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.log-action {
+  flex-grow: 1;
+}
