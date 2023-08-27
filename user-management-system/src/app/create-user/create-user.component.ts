@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { mockUsers } from '../mock-data/users-mock-data';
+import { IUser } from '../models/user-model';
+import { UserServiceService } from '../services/user-service.service';
 
 @Component({
   selector: 'app-create-user',
@@ -10,7 +12,10 @@ import { mockUsers } from '../mock-data/users-mock-data';
 export class CreateUserComponent implements OnInit {
   addUserForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserServiceService
+  ) {
     this.addUserForm = this.fb.group({
       username: [
         '',
@@ -43,8 +48,13 @@ export class CreateUserComponent implements OnInit {
 
   onSubmit() {
     if (this.addUserForm.valid) {
-      const newUser = this.addUserForm.value;
-      console.log('New User:', newUser);
+      const newUser: IUser = this.addUserForm.value;
+      console.log(newUser);
+      this.userService.addUser(newUser).subscribe((addedUser) => {
+        console.log('New User Added:', addedUser);
+        // // Optionally, you can reset the form after adding
+        // this.addUserForm.reset();
+      });
     }
   }
 

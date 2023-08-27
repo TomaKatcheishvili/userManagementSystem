@@ -2,11 +2,12 @@ import { IUser } from '../models/user-model';
 
 export const mockUsers: IUser[] = [
   {
+    id: 1,
     username: 'johndoe',
     firstName: 'John',
     lastName: 'Doe',
-    email: 'john.doe@example.com',
-    phoneNumber: 1234567890,
+    emails: ['john.doe@example.com'],
+    phoneNumbers: [1234567890],
     isActive: true,
     logs: [
       { date: new Date('2023-08-01'), action: 'Login' },
@@ -14,12 +15,12 @@ export const mockUsers: IUser[] = [
     ],
   },
   {
+    id: 2,
     username: 'janesmith',
-
     firstName: 'Jane',
     lastName: 'Smith',
-    email: 'jane.smith@example.com',
-    phoneNumber: 9876543210,
+    emails: ['jane.smith@example.com'],
+    phoneNumbers: [9876543210],
     isActive: false,
     logs: [
       { date: new Date('2023-08-03'), action: 'Login' },
@@ -27,11 +28,12 @@ export const mockUsers: IUser[] = [
     ],
   },
   {
+    id: 3,
     username: 'michaeljohnson',
     firstName: 'Michael',
     lastName: 'Johnson',
-    email: 'michael.johnson@example.com',
-    phoneNumber: 5551234567,
+    emails: ['michael.johnson@example.com'],
+    phoneNumbers: [5551234567],
     isActive: true,
     logs: [
       { date: new Date('2023-08-05'), action: 'Login' },

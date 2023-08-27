@@ -1,16 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { mockUsers } from '../mock-data/users-mock-data';
+import { Observable } from 'rxjs';
 import { IUser } from '../models/user-model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserServiceService {
-  users: IUser[] = mockUsers;
+  private apiUrl = 'http://localhost:3000/users';
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getUsers() {
-    return this.users;
+  getUsers(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(this.apiUrl);
+  }
+
+  addUser(user: IUser): Observable<IUser> {
+    return this.http.post<IUser>(this.apiUrl, user);
   }
 }

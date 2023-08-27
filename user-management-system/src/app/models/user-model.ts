@@ -1,9 +1,10 @@
 export interface IUser {
+  id: number;
   username: string;
   firstName: string;
   lastName: string;
-  email: string;
-  phoneNumber: number;
+  emails: string[];
+  phoneNumbers: number[];
   isActive: boolean;
   logs?: ILog[];
 }
