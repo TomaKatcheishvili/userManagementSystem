@@ -6,9 +6,12 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { map, take } from 'rxjs';
+import * as UserActions from '../+store/user.actions';
+import { addUser } from '../+store/user.actions';
+import { selectUsers } from '../+store/user.selectors';
 import { IUser } from '../models/user-model';
-import { UserServiceService } from '../services/user-service.service';
 
 @Component({
   selector: 'app-create-user',
@@ -18,10 +21,7 @@ import { UserServiceService } from '../services/user-service.service';
 export class CreateUserComponent implements OnInit {
   addUserForm: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private userService: UserServiceService
-  ) {
+  constructor(private fb: FormBuilder, private store: Store) {
     this.addUserForm = this.fb.group({
       username: [
         '',
@@ -45,6 +45,8 @@ export class CreateUserComponent implements OnInit {
       ]),
       isActive: [false],
     });
+
+    this.store.dispatch(UserActions.loadUsers());
   }
 
   ngOnInit() {}
@@ -54,9 +56,8 @@ export class CreateUserComponent implements OnInit {
     if (this.addUserForm.valid) {
       const newUser: IUser = this.addUserForm.value;
       newUser.logs = [{ date: new Date(), action: 'User created' }];
-      this.userService.addUser(newUser).subscribe((addedUser) => {
-        this.addUserForm.reset();
-      });
+      this.store.dispatch(addUser({ user: newUser }));
+      this.addUserForm.reset();
     }
   }
 
@@ -95,7 +96,7 @@ export class CreateUserComponent implements OnInit {
   uniqueEmailsValidator(control: AbstractControl) {
     const emailArray = control.value;
 
-    return this.userService.getUsers().pipe(
+    return this.store.select(selectUsers).pipe(
       take(1),
       map((users) => {
         const isTaken = users.some((user) =>
@@ -108,17 +109,20 @@ export class CreateUserComponent implements OnInit {
   }
 
   uniqueUsernameValidator(usernameControl: AbstractControl) {
-    return this.userService.getUsers().pipe(
+    return this.store.select(selectUsers).pipe(
+      take(1),
       map((users) => {
+        console.log(users);
         const isTaken = users.some(
           (user) => user.username === usernameControl.value
         );
+        console.log(isTaken);
         return isTaken ? { uniqueUsername: true } : null;
       })
     );
   }
 
   logForm() {
-    this.uniqueEmailsValidator(this.emails);
+    console.log(this.addUserForm);
   }
 }

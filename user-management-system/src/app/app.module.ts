@@ -3,6 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { UserEffects } from './+store/user.effects';
+import { userReducer } from './+store/user.reducer';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateUserComponent } from './create-user/create-user.component';
@@ -22,6 +26,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    StoreModule.forRoot({ user: userReducer }),
+    EffectsModule.forRoot([UserEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

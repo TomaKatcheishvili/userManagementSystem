@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectUsers } from 'src/app/+store/user.selectors';
 import { IUser } from 'src/app/models/user-model';
-import { UserServiceService } from 'src/app/services/user-service.service';
-
+import * as UserActions from '../../+store/user.actions';
 @Component({
   selector: 'app-user-logs-sidebar',
   templateUrl: './user-logs-sidebar.component.html',
@@ -10,10 +11,15 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 export class UserLogsSidebarComponent {
   users!: IUser[];
 
-  constructor(private userService: UserServiceService) {
-    this.userService.getUsers().subscribe((res) => {
-      console.log(res);
-      this.users = res;
+  constructor(private store: Store) {
+    this.getUsers();
+  }
+
+  getUsers() {
+    this.store.dispatch(UserActions.loadUsers());
+
+    this.store.select(selectUsers).subscribe((users) => {
+      this.users = users;
     });
   }
 }

@@ -74,15 +74,15 @@
       "firstName": "test",
       "lastName": "test",
       "emails": [
-        "test@test"
+        "michael.johnson@example"
       ],
       "phoneNumbers": [
         "123123123"
       ],
-      "isActive": false,
+      "isActive": true,
       "logs": [
         {
-          "date": "2023-08-28T17:57:59.105Z",
+          "date": "2023-08-29T10:00:58.047Z",
           "action": "User created"
         }
       ],
@@ -93,38 +93,19 @@
       "firstName": "toma",
       "lastName": "toma",
       "emails": [
-        "john.doe@example.com"
-      ],
-      "phoneNumbers": [
-        "123123"
-      ],
-      "isActive": true,
-      "logs": [
-        {
-          "date": "2023-08-28T17:58:16.161Z",
-          "action": "User created"
-        }
-      ],
-      "id": 5
-    },
-    {
-      "username": "kako",
-      "firstName": "kako",
-      "lastName": "kako",
-      "emails": [
-        "jane.smith@example.co"
+        "tomatoma@toma"
       ],
       "phoneNumbers": [
         "123123123"
       ],
-      "isActive": true,
+      "isActive": false,
       "logs": [
         {
-          "date": "2023-08-28T18:03:15.244Z",
+          "date": "2023-08-29T10:34:05.540Z",
           "action": "User created"
         }
       ],
-      "id": 6
+      "id": 5
     }
   ]
 }

@@ -10,7 +10,7 @@
         formControlName="username"
       />
       <div
-        *ngIf="addUserForm.get('username')?.hasError('uniqueUsername')"
+        *ngIf="addUserForm.get('username')?.errors?.['uniqueUsername']"
         class="error-message"
       >
         Username is already taken.
@@ -59,17 +59,13 @@
               Remove
             </button>
           </div>
+          <div *ngIf="emailCtrl.hasError('uniqueEmails')" class="error-message">
+            Email is already taken.
+          </div>
         </div>
         <button type="button" class="add-button" (click)="addEmail()">
           Add Email
         </button>
-      </div>
-
-      <div
-        *ngIf="addUserForm.get('emails')?.hasError('uniqueEmails')"
-        class="error-message"
-      >
-        Email is already taken.
       </div>
     </div>
 
