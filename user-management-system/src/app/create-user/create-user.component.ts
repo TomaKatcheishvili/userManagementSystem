@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { mockUsers } from '../mock-data/users-mock-data';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { map, take } from 'rxjs';
 import { IUser } from '../models/user-model';
 import { UserServiceService } from '../services/user-service.service';
 
@@ -19,12 +25,17 @@ export class CreateUserComponent implements OnInit {
     this.addUserForm = this.fb.group({
       username: [
         '',
-        [Validators.required, this.uniqueUsernameValidator.bind(this)],
+        [Validators.required],
+        [this.uniqueUsernameValidator.bind(this)],
       ],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       emails: this.fb.array([
-        this.fb.control('', [Validators.required, Validators.email]),
+        this.fb.control(
+          '',
+          [Validators.required, Validators.email],
+          [this.uniqueEmailsValidator.bind(this)]
+        ),
       ]),
       phoneNumbers: this.fb.array([
         this.fb.control('', [
@@ -38,22 +49,13 @@ export class CreateUserComponent implements OnInit {
 
   ngOnInit() {}
 
-  uniqueUsernameValidator(control: any) {
-    const username = control.value.toLowerCase();
-    const isUsernameTaken = mockUsers.some(
-      (user) => user.username.toLowerCase() === username
-    );
-    return isUsernameTaken ? { uniqueUsername: true } : null;
-  }
-
   onSubmit() {
+    console.log(this.addUserForm.value);
     if (this.addUserForm.valid) {
       const newUser: IUser = this.addUserForm.value;
-      console.log(newUser);
+      newUser.logs = [{ date: new Date(), action: 'User created' }];
       this.userService.addUser(newUser).subscribe((addedUser) => {
-        console.log('New User Added:', addedUser);
-        // // Optionally, you can reset the form after adding
-        // this.addUserForm.reset();
+        this.addUserForm.reset();
       });
     }
   }
@@ -64,7 +66,11 @@ export class CreateUserComponent implements OnInit {
 
   addEmail() {
     this.emails.push(
-      this.fb.control('', [Validators.required, Validators.email])
+      this.fb.control(
+        '',
+        [Validators.required, Validators.email],
+        [this.uniqueEmailsValidator.bind(this)]
+      )
     );
   }
 
@@ -84,5 +90,35 @@ export class CreateUserComponent implements OnInit {
 
   removePhoneNumber(index: number) {
     this.phoneNumbers.removeAt(index);
+  }
+
+  uniqueEmailsValidator(control: AbstractControl) {
+    const emailArray = control.value;
+
+    return this.userService.getUsers().pipe(
+      take(1),
+      map((users) => {
+        const isTaken = users.some((user) =>
+          user.emails.some((r) => emailArray.indexOf(r) >= 0)
+        );
+        console.log(isTaken);
+        return isTaken ? { uniqueEmails: true } : null;
+      })
+    );
+  }
+
+  uniqueUsernameValidator(usernameControl: AbstractControl) {
+    return this.userService.getUsers().pipe(
+      map((users) => {
+        const isTaken = users.some(
+          (user) => user.username === usernameControl.value
+        );
+        return isTaken ? { uniqueUsername: true } : null;
+      })
+    );
+  }
+
+  logForm() {
+    this.uniqueEmailsValidator(this.emails);
   }
 }

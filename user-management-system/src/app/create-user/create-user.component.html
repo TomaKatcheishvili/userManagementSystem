@@ -64,6 +64,13 @@
           Add Email
         </button>
       </div>
+
+      <div
+        *ngIf="addUserForm.get('emails')?.hasError('uniqueEmails')"
+        class="error-message"
+      >
+        Email is already taken.
+      </div>
     </div>
 
     <div class="form-group">
@@ -114,3 +121,5 @@
     </button>
   </form>
 </div>
+
+<button (click)="logForm()">log form</button>

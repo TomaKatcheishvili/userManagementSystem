@@ -1,6 +1,6 @@
 <div class="user-logs-sidebar">
   <h3>User Logs</h3>
-  <div *ngIf="users.length > 0; else noLogs">
+  <div *ngIf="users; else noLogs">
     <div class="user-log" *ngFor="let user of users">
       <h4>{{ user.firstName }} {{ user.lastName }}</h4>
       <ul class="log-list">

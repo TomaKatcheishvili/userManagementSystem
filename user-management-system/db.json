@@ -5,8 +5,12 @@
       "username": "johndoe",
       "firstName": "John",
       "lastName": "Doe",
-      "emails": ["john.doe@example.com"],
-      "phoneNumbers": [1234567890],
+      "emails": [
+        "john.doe@example.com"
+      ],
+      "phoneNumbers": [
+        1234567890
+      ],
       "isActive": true,
       "logs": [
         {
@@ -24,8 +28,12 @@
       "username": "janesmith",
       "firstName": "Jane",
       "lastName": "Smith",
-      "emails": ["jane.smith@example.com"],
-      "phoneNumbers": [9876543210],
+      "emails": [
+        "jane.smith@example.com"
+      ],
+      "phoneNumbers": [
+        9876543210
+      ],
       "isActive": false,
       "logs": [
         {
@@ -43,8 +51,12 @@
       "username": "michaeljohnson",
       "firstName": "Michael",
       "lastName": "Johnson",
-      "emails": ["michael.johnson@example.com"],
-      "phoneNumbers": [5551234567],
+      "emails": [
+        "michael.johnson@example.com"
+      ],
+      "phoneNumbers": [
+        5551234567
+      ],
       "isActive": true,
       "logs": [
         {
@@ -58,30 +70,60 @@
       ]
     },
     {
-      "username": "asd",
-      "firstName": "asda",
-      "lastName": "asad",
-      "emails": ["asdsa@asdas"],
-      "phoneNumbers": ["123123"],
+      "username": "test",
+      "firstName": "test",
+      "lastName": "test",
+      "emails": [
+        "test@test"
+      ],
+      "phoneNumbers": [
+        "123123123"
+      ],
       "isActive": false,
+      "logs": [
+        {
+          "date": "2023-08-28T17:57:59.105Z",
+          "action": "User created"
+        }
+      ],
       "id": 4
     },
     {
-      "username": "asads",
-      "firstName": "asda",
-      "lastName": "asad",
-      "emails": ["asdsa@asdas"],
-      "phoneNumbers": ["123123"],
-      "isActive": false,
+      "username": "toma",
+      "firstName": "toma",
+      "lastName": "toma",
+      "emails": [
+        "john.doe@example.com"
+      ],
+      "phoneNumbers": [
+        "123123"
+      ],
+      "isActive": true,
+      "logs": [
+        {
+          "date": "2023-08-28T17:58:16.161Z",
+          "action": "User created"
+        }
+      ],
       "id": 5
     },
     {
-      "username": "asd",
-      "firstName": "asdasd",
-      "lastName": "asdasd",
-      "emails": ["asdasd@asdasd"],
-      "phoneNumbers": ["123123"],
+      "username": "kako",
+      "firstName": "kako",
+      "lastName": "kako",
+      "emails": [
+        "jane.smith@example.co"
+      ],
+      "phoneNumbers": [
+        "123123123"
+      ],
       "isActive": true,
+      "logs": [
+        {
+          "date": "2023-08-28T18:03:15.244Z",
+          "action": "User created"
+        }
+      ],
       "id": 6
     }
   ]

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { mockUsers } from 'src/app/mock-data/users-mock-data';
 import { IUser } from 'src/app/models/user-model';
+import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
   selector: 'app-user-logs-sidebar',
@@ -8,5 +8,12 @@ import { IUser } from 'src/app/models/user-model';
   styleUrls: ['./user-logs-sidebar.component.css'],
 })
 export class UserLogsSidebarComponent {
-  users: IUser[] = mockUsers;
+  users!: IUser[];
+
+  constructor(private userService: UserServiceService) {
+    this.userService.getUsers().subscribe((res) => {
+      console.log(res);
+      this.users = res;
+    });
+  }
 }
