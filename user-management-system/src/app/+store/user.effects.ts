@@ -32,6 +32,33 @@ export class UserEffects {
     )
   );
 
+  editUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.editUser),
+      mergeMap(({ user, userId }) =>
+        this.userService.editUser(user, userId).pipe(
+          map(
+            (editedUser) =>
+              UserActions.editUserSucess({ user: editedUser, userId }) // Use userId
+          ),
+          catchError((error) => of(UserActions.editUserFailure({ error })))
+        )
+      )
+    )
+  );
+
+  deleteUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.deleteUser),
+      mergeMap(({ userId }) =>
+        this.userService.deleteUser(userId).pipe(
+          map(() => UserActions.deleteUserSuccess({ userId })),
+          catchError((error) => of(UserActions.deleteUserFailure({ error })))
+        )
+      )
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private userService: UserServiceService

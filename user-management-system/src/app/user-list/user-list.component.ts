@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import * as UserActions from '../+store/user.actions';
 import { selectUsers } from '../+store/user.selectors';
 import { IUser } from '../models/user-model';
+import { UserServiceService } from '../services/user-service.service';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 
 @Component({
@@ -17,7 +18,7 @@ export class UserListComponent implements OnInit {
   @ViewChildren(UserProfileComponent)
   userProfileComponents!: QueryList<UserProfileComponent>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private userService: UserServiceService) {
     this.getUsers();
   }
 
@@ -34,5 +35,9 @@ export class UserListComponent implements OnInit {
     this.store.select(selectUsers).subscribe((users) => {
       this.users = users;
     });
+  }
+
+  deleteUser(userId: number) {
+    this.store.dispatch(UserActions.deleteUser({ userId }));
   }
 }

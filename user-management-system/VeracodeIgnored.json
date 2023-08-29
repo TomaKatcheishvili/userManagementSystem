@@ -180,5 +180,31 @@
         "AbsoluteFilePath": "/Users/user/Documents/GitHub/userManagementSystem/user-management-system/src/app/mock-data/users-mock-data.ts"
       }
     }
+  },
+  {
+    "CWEId": "117",
+    "FlawMatch": {
+      "ProcedureHash": "3710301795",
+      "PrototypeHash": "1043829114",
+      "FlawHash": "3132762339",
+      "FlawHashCount": "1",
+      "FlawHashOrdinal": "1",
+      "CauseHash": "1176028798",
+      "CauseHashCount": "1",
+      "CauseHashOrdinal": "1",
+      "CauseHash2": "1522093433",
+      "CauseHash2Ordinal": "3"
+    },
+    "Files": {
+      "SourceFile": {
+        "File": "create-user.component.ts",
+        "Line": "89",
+        "FunctionName": "lambda_3",
+        "QualifiedFunctionName": "lambda_3",
+        "FunctionPrototype": "lambda_3(: any,  : any, ...) : any",
+        "Scope": "UNKNOWN",
+        "AbsoluteFilePath": "/Users/user/Documents/GitHub/userManagementSystem/user-management-system/src/app/create-user/create-user.component.ts"
+      }
+    }
   }
 ]

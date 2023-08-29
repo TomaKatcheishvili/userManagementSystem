@@ -20,5 +20,15 @@ export const userReducer = createReducer(
   on(UserActions.addUserSuccess, (state, { user }) => ({
     ...state,
     users: [...state.users, user],
+  })),
+  on(UserActions.editUserSucess, (state, { user, userId }) => ({
+    ...state,
+    users: state.users.map((existingUser) =>
+      existingUser.id === userId ? user : existingUser
+    ),
+  })),
+  on(UserActions.deleteUserSuccess, (state, { userId }) => ({
+    ...state,
+    users: state.users.filter((user) => user.id !== userId),
   }))
 );

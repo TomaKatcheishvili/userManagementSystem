@@ -6,12 +6,13 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, take } from 'rxjs';
 import * as UserActions from '../+store/user.actions';
-import { addUser } from '../+store/user.actions';
 import { selectUsers } from '../+store/user.selectors';
 import { IUser } from '../models/user-model';
+import { UserServiceService } from '../services/user-service.service';
 
 @Component({
   selector: 'app-create-user',
@@ -20,8 +21,15 @@ import { IUser } from '../models/user-model';
 })
 export class CreateUserComponent implements OnInit {
   addUserForm: FormGroup;
+  isEdit = false;
+  userId!: number;
 
-  constructor(private fb: FormBuilder, private store: Store) {
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+    private route: ActivatedRoute,
+    private userService: UserServiceService
+  ) {
     this.addUserForm = this.fb.group({
       username: [
         '',
@@ -47,17 +55,45 @@ export class CreateUserComponent implements OnInit {
     });
 
     this.store.dispatch(UserActions.loadUsers());
+
+    this.route.params.subscribe((params) => {
+      this.userId = params['userId'];
+
+      if (this.userId) {
+        this.isEdit = true;
+        this.userService.getUserById(this.userId).subscribe((user) => {
+          if (user) {
+            this.populateForm(user);
+          }
+        });
+      }
+    });
   }
 
   ngOnInit() {}
 
   onSubmit() {
-    console.log(this.addUserForm.value);
-    if (this.addUserForm.valid) {
-      const newUser: IUser = this.addUserForm.value;
-      newUser.logs = [{ date: new Date(), action: 'User created' }];
-      this.store.dispatch(addUser({ user: newUser }));
+    if (this.isEdit) {
+      if (this.addUserForm.valid) {
+        const editedUser: IUser = {
+          ...this.addUserForm.value,
+          userId: this.userId,
+        };
+        this.store.dispatch(
+          UserActions.editUser({
+            user: editedUser,
+            userId: this.userId,
+          })
+        );
+      }
       this.addUserForm.reset();
+    } else {
+      if (this.addUserForm.valid) {
+        const newUser: IUser = this.addUserForm.value;
+        newUser.logs = [{ date: new Date(), action: 'User created' }];
+        this.store.dispatch(UserActions.addUser({ user: newUser }));
+        this.addUserForm.reset();
+      }
     }
   }
 
@@ -122,7 +158,17 @@ export class CreateUserComponent implements OnInit {
     );
   }
 
+  populateForm(user: IUser) {
+    this.addUserForm.patchValue({
+      username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    });
+  }
+
   logForm() {
+    this.userService.getUserById(1).subscribe((res) => console.log(res));
+    console.log(this.isEdit);
     console.log(this.addUserForm);
   }
 }

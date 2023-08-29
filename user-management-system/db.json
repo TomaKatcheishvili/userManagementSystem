@@ -1,111 +1,45 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "johndoe",
-      "firstName": "John",
-      "lastName": "Doe",
+      "username": "TomaToma",
+      "firstName": "Toma",
+      "lastName": "Katcheishvili",
       "emails": [
-        "john.doe@example.com"
+        "tomakache@mail.com",
+        "tomakache@hotmail.com"
       ],
       "phoneNumbers": [
-        1234567890
+        "1234567890"
       ],
       "isActive": true,
       "logs": [
         {
-          "date": "2023-08-01T00:00:00.000Z",
-          "action": "Login"
-        },
-        {
-          "date": "2023-08-02T00:00:00.000Z",
-          "action": "Logout"
+          "date": "2023-08-29T15:17:47.162Z",
+          "action": "User created"
         }
-      ]
+      ],
+      "id": 1
     },
     {
-      "id": 2,
-      "username": "janesmith",
-      "firstName": "Jane",
+      "username": "JohnJohn",
+      "firstName": "John",
       "lastName": "Smith",
       "emails": [
-        "jane.smith@example.com"
+        "johnsmith@gmail.com",
+        "john@gmail.com"
       ],
       "phoneNumbers": [
-        9876543210
-      ],
-      "isActive": false,
-      "logs": [
-        {
-          "date": "2023-08-03T00:00:00.000Z",
-          "action": "Login"
-        },
-        {
-          "date": "2023-08-04T00:00:00.000Z",
-          "action": "Logout"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "username": "michaeljohnson",
-      "firstName": "Michael",
-      "lastName": "Johnson",
-      "emails": [
-        "michael.johnson@example.com"
-      ],
-      "phoneNumbers": [
-        5551234567
+        "12345678",
+        "1234567890"
       ],
       "isActive": true,
       "logs": [
         {
-          "date": "2023-08-05T00:00:00.000Z",
-          "action": "Login"
-        },
-        {
-          "date": "2023-08-06T00:00:00.000Z",
-          "action": "Logout"
-        }
-      ]
-    },
-    {
-      "username": "test",
-      "firstName": "test",
-      "lastName": "test",
-      "emails": [
-        "michael.johnson@example"
-      ],
-      "phoneNumbers": [
-        "123123123"
-      ],
-      "isActive": true,
-      "logs": [
-        {
-          "date": "2023-08-29T10:00:58.047Z",
+          "date": "2023-08-29T15:18:32.694Z",
           "action": "User created"
         }
       ],
-      "id": 4
-    },
-    {
-      "username": "toma",
-      "firstName": "toma",
-      "lastName": "toma",
-      "emails": [
-        "tomatoma@toma"
-      ],
-      "phoneNumbers": [
-        "123123123"
-      ],
-      "isActive": false,
-      "logs": [
-        {
-          "date": "2023-08-29T10:34:05.540Z",
-          "action": "User created"
-        }
-      ],
-      "id": 5
+      "id": 2
     }
   ]
 }

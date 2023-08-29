@@ -9,6 +9,14 @@
         <button class="button-class" (click)="navigateToUserProfile(user)">
           See User
         </button>
+
+        <button class="button-class" (click)="deleteUser(user.id)">
+          Delete User
+        </button>
+
+        <button class="button-class" [routerLink]="['edit-user', user.id]">
+          Edit User
+        </button>
       </li>
     </ol>
   </div>
