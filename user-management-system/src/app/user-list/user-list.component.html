@@ -1,22 +1,28 @@
-<div class="full-user-view">
+<div class="user-list-container">
   <div class="user-list">
-    <ol *ngFor="let user of users">
-      <li>
+    <ol class="user-items" *ngFor="let user of users">
+      <li class="user-item">
         <p appHighlight [user]="user">
           {{ user.firstName }} {{ user.lastName }}
         </p>
 
-        <button class="button-class" (click)="navigateToUserProfile(user)">
-          See User
-        </button>
-
-        <button class="button-class" (click)="deleteUser(user.id)">
-          Delete User
-        </button>
-
-        <button class="button-class" [routerLink]="['edit-user', user.id]">
-          Edit User
-        </button>
+        <div class="user-actions">
+          <button class="action-button" (click)="navigateToUserProfile(user)">
+            See User
+          </button>
+          <button
+            class="action-button delete-button"
+            (click)="deleteUser(user.id)"
+          >
+            Delete User
+          </button>
+          <button
+            class="action-button edit-button"
+            [routerLink]="['edit-user', user.id]"
+          >
+            Edit User
+          </button>
+        </div>
       </li>
     </ol>
   </div>
@@ -28,8 +34,6 @@
   <router-outlet name="sidebar"></router-outlet>
 </div>
 
-<button class="button-class" [routerLink]="['create-user']">
+<button class="create-button" [routerLink]="['create-user']">
   Create New User
 </button>
-
-<button (click)="getUsers()">getUsers</button>

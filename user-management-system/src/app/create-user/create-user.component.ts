@@ -63,6 +63,7 @@ export class CreateUserComponent implements OnInit {
         this.isEdit = true;
         this.userService.getUserById(this.userId).subscribe((user) => {
           if (user) {
+            console.log(user);
             this.populateForm(user);
           }
         });
@@ -163,12 +164,36 @@ export class CreateUserComponent implements OnInit {
       username: user.username,
       firstName: user.firstName,
       lastName: user.lastName,
+      // phoneNumbers: user.phoneNumbers,
+      isActive: user.isActive,
     });
-  }
 
-  logForm() {
-    this.userService.getUserById(1).subscribe((res) => console.log(res));
-    console.log(this.isEdit);
-    console.log(this.addUserForm);
+    while (this.emails.length > 1) {
+      this.emails.removeAt(1);
+    }
+
+    // Add email controls based on user.emails
+    for (let i = 1; i < user.emails.length; i++) {
+      this.addEmail();
+    }
+
+    // Set email values
+    for (let i = 0; i < user.emails.length; i++) {
+      this.emails.controls[i].setValue(user.emails[i]);
+    }
+
+    while (this.phoneNumbers.length > 1) {
+      this.phoneNumbers.removeAt(1);
+    }
+
+    // Add email controls based on user.emails
+    for (let i = 1; i < user.phoneNumbers.length; i++) {
+      this.addPhoneNumber();
+    }
+
+    // Set email values
+    for (let i = 0; i < user.phoneNumbers.length; i++) {
+      this.phoneNumbers.controls[i].setValue(user.phoneNumbers[i]);
+    }
   }
 }

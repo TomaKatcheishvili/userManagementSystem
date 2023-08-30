@@ -1,0 +1,16 @@
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: #333;
+  padding: 10px;
+  color: white;
+}
+
+.select-language {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}

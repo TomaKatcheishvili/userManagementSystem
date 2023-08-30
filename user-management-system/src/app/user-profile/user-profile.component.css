@@ -1,0 +1,25 @@
+.user-profile-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.user-profile,
+.no-user-selected {
+  text-align: center;
+}
+
+.user-field {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.no-user-selected {
+  color: #999;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .user-profile-container {
+    padding: 10px;
+  }
+}

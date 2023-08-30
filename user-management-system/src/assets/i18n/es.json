@@ -1,0 +1,10 @@
+{
+  "USER_PROFILE": {
+    "USERNAME": "Nombre de usuario",
+    "NAME": "Nombre",
+    "EMAIL": "Correo electrónico",
+    "PHONE_NUMBER": "Número de teléfono",
+    "ACTIVE": "Activo",
+    "NO_USER_SELECTED": "Ningún usuario seleccionado."
+  }
+}

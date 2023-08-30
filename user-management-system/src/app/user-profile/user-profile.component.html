@@ -1,11 +1,32 @@
-<div *ngIf="selectedUser">
-  <p>Username: {{ selectedUser.username }}</p>
-  <p>Name: {{ selectedUser.firstName }} {{ selectedUser.lastName }}</p>
-  <p>Email: {{ selectedUser.emails }}</p>
-  <p>Phone Number: {{ selectedUser.phoneNumbers }}</p>
-  <p>Is Active: {{ selectedUser.isActive }}</p>
-</div>
+<div class="user-profile-container">
+  <div class="user-profile" *ngIf="selectedUser">
+    <p class="user-field">
+      {{ "USER_PROFILE.USERNAME" | translate }}: {{ selectedUser.username }}
+    </p>
+    <p class="user-field">
+      {{ "USER_PROFILE.NAME" | translate }}: {{ selectedUser.firstName }}
+      {{ selectedUser.lastName }}
+    </p>
+    <p class="user-field">
+      {{ "USER_PROFILE.EMAIL" | translate }}:
+      <span *ngFor="let email of selectedUser.emails; let last = last">
+        {{ email }}{{ !last ? ", " : "" }}
+      </span>
+    </p>
+    <p class="user-field">
+      {{ "USER_PROFILE.PHONE_NUMBER" | translate }}:
+      <span
+        *ngFor="let phoneNumber of selectedUser.phoneNumbers; let last = last"
+      >
+        {{ phoneNumber }}{{ !last ? ", " : "" }}
+      </span>
+    </p>
+    <p class="user-field">
+      {{ "USER_PROFILE.ACTIVE" | translate }}: {{ selectedUser.isActive }}
+    </p>
+  </div>
 
-<div *ngIf="!selectedUser">
-  <p>No user selected.</p>
+  <div class="no-user-selected" *ngIf="!selectedUser">
+    <p>{{ "USER_PROFILE.NO_USER_SELECTED" | translate }}</p>
+  </div>
 </div>
