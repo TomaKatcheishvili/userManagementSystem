@@ -31,19 +31,11 @@ export class CreateUserComponent implements OnInit {
     private userService: UserServiceService
   ) {
     this.addUserForm = this.fb.group({
-      username: [
-        '',
-        [Validators.required],
-        [this.uniqueUsernameValidator.bind(this)],
-      ],
+      username: ['', [Validators.required]],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       emails: this.fb.array([
-        this.fb.control(
-          '',
-          [Validators.required, Validators.email],
-          [this.uniqueEmailsValidator.bind(this)]
-        ),
+        this.fb.control('', [Validators.required, Validators.email]),
       ]),
       phoneNumbers: this.fb.array([
         this.fb.control('', [
@@ -69,6 +61,8 @@ export class CreateUserComponent implements OnInit {
         });
       }
     });
+
+    this.addCustomValidators();
   }
 
   ngOnInit() {}
@@ -104,12 +98,10 @@ export class CreateUserComponent implements OnInit {
 
   addEmail() {
     this.emails.push(
-      this.fb.control(
-        '',
-        [Validators.required, Validators.email],
-        [this.uniqueEmailsValidator.bind(this)]
-      )
+      this.fb.control('', [Validators.required, Validators.email])
     );
+
+    this.addCustomValidators();
   }
 
   removeEmail(index: number) {
@@ -164,7 +156,6 @@ export class CreateUserComponent implements OnInit {
       username: user.username,
       firstName: user.firstName,
       lastName: user.lastName,
-      // phoneNumbers: user.phoneNumbers,
       isActive: user.isActive,
     });
 
@@ -172,12 +163,10 @@ export class CreateUserComponent implements OnInit {
       this.emails.removeAt(1);
     }
 
-    // Add email controls based on user.emails
     for (let i = 1; i < user.emails.length; i++) {
       this.addEmail();
     }
 
-    // Set email values
     for (let i = 0; i < user.emails.length; i++) {
       this.emails.controls[i].setValue(user.emails[i]);
     }
@@ -186,14 +175,27 @@ export class CreateUserComponent implements OnInit {
       this.phoneNumbers.removeAt(1);
     }
 
-    // Add email controls based on user.emails
     for (let i = 1; i < user.phoneNumbers.length; i++) {
       this.addPhoneNumber();
     }
 
-    // Set email values
     for (let i = 0; i < user.phoneNumbers.length; i++) {
       this.phoneNumbers.controls[i].setValue(user.phoneNumbers[i]);
     }
+  }
+
+  addCustomValidators() {
+    if (!this.isEdit) {
+      this.addUserForm.controls['username'].setAsyncValidators(
+        this.uniqueUsernameValidator.bind(this)
+      );
+      const emailControls = this.addUserForm.get('emails') as FormArray;
+      emailControls.controls.forEach((control) => {
+        control.setAsyncValidators(this.uniqueEmailsValidator.bind(this));
+      });
+      emailControls.updateValueAndValidity();
+    }
+
+    this.addUserForm.controls['username'].updateValueAndValidity();
   }
 }
