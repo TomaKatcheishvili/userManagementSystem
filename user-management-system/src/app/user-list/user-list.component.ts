@@ -10,7 +10,6 @@ import { Subject, takeUntil } from 'rxjs';
 import * as UserActions from '../+store/user.actions';
 import { selectUsers } from '../+store/user.selectors';
 import { IUser } from '../models/user-model';
-import { UserServiceService } from '../services/user-service.service';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 
 @Component({
@@ -27,7 +26,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   @ViewChildren(UserProfileComponent)
   userProfileComponents!: QueryList<UserProfileComponent>;
 
-  constructor(private store: Store, private userService: UserServiceService) {
+  constructor(private store: Store) {
     this.getUsers();
   }
 
@@ -35,7 +34,6 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   navigateToUserProfile(user: IUser) {
     this.selectedUser = user;
-    console.log(this.userProfileComponents);
   }
 
   getUsers() {

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -19,7 +19,7 @@ import { UserServiceService } from '../services/user-service.service';
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css'],
 })
-export class CreateUserComponent implements OnInit, OnDestroy {
+export class CreateUserComponent implements OnDestroy {
   addUserForm: FormGroup;
   isEdit = false;
   userId!: number;
@@ -60,7 +60,6 @@ export class CreateUserComponent implements OnInit, OnDestroy {
           .pipe(takeUntil(this.destroy$))
           .subscribe((user) => {
             if (user) {
-              console.log(user);
               this.populateForm(user);
             }
           });
@@ -69,8 +68,6 @@ export class CreateUserComponent implements OnInit, OnDestroy {
 
     this.addCustomValidators();
   }
-
-  ngOnInit() {}
 
   onSubmit() {
     if (this.isEdit) {
@@ -136,7 +133,6 @@ export class CreateUserComponent implements OnInit, OnDestroy {
         const isTaken = users.some((user) =>
           user.emails.some((r) => emailArray.indexOf(r) >= 0)
         );
-        console.log(isTaken);
         return isTaken ? { uniqueEmails: true } : null;
       })
     );
@@ -146,11 +142,9 @@ export class CreateUserComponent implements OnInit, OnDestroy {
     return this.store.select(selectUsers).pipe(
       take(1),
       map((users) => {
-        console.log(users);
         const isTaken = users.some(
           (user) => user.username === usernameControl.value
         );
-        console.log(isTaken);
         return isTaken ? { uniqueUsername: true } : null;
       })
     );
@@ -164,20 +158,12 @@ export class CreateUserComponent implements OnInit, OnDestroy {
       isActive: user.isActive,
     });
 
-    while (this.emails.length > 1) {
-      this.emails.removeAt(1);
-    }
-
     for (let i = 1; i < user.emails.length; i++) {
       this.addEmail();
     }
 
     for (let i = 0; i < user.emails.length; i++) {
       this.emails.controls[i].setValue(user.emails[i]);
-    }
-
-    while (this.phoneNumbers.length > 1) {
-      this.phoneNumbers.removeAt(1);
     }
 
     for (let i = 1; i < user.phoneNumbers.length; i++) {
@@ -194,14 +180,13 @@ export class CreateUserComponent implements OnInit, OnDestroy {
       this.addUserForm.controls['username'].setAsyncValidators(
         this.uniqueUsernameValidator.bind(this)
       );
+      this.addUserForm.controls['username'].updateValueAndValidity();
       const emailControls = this.addUserForm.get('emails') as FormArray;
       emailControls.controls.forEach((control) => {
         control.setAsyncValidators(this.uniqueEmailsValidator.bind(this));
       });
       emailControls.updateValueAndValidity();
     }
-
-    this.addUserForm.controls['username'].updateValueAndValidity();
   }
 
   ngOnDestroy(): void {

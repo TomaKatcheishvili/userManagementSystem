@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
 import { IUser } from '../models/user-model';
@@ -14,10 +13,6 @@ import { IUser } from '../models/user-model';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent {
   @Input() selectedUser!: IUser | undefined;
-
-  constructor() {}
-
-  ngOnInit() {}
 }
