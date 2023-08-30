@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
 import { selectUsers } from 'src/app/+store/user.selectors';
 import { IUser } from 'src/app/models/user-model';
 import * as UserActions from '../../+store/user.actions';
@@ -8,8 +9,9 @@ import * as UserActions from '../../+store/user.actions';
   templateUrl: './user-logs-sidebar.component.html',
   styleUrls: ['./user-logs-sidebar.component.css'],
 })
-export class UserLogsSidebarComponent {
+export class UserLogsSidebarComponent implements OnDestroy {
   users!: IUser[];
+  destroy$ = new Subject<void>();
 
   constructor(private store: Store) {
     this.getUsers();
@@ -18,8 +20,15 @@ export class UserLogsSidebarComponent {
   getUsers() {
     this.store.dispatch(UserActions.loadUsers());
 
-    this.store.select(selectUsers).subscribe((users) => {
-      this.users = users;
-    });
+    this.store
+      .select(selectUsers)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((users) => {
+        this.users = users;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, take } from 'rxjs';
+import { map, Subject, take, takeUntil } from 'rxjs';
 import * as UserActions from '../+store/user.actions';
 import { selectUsers } from '../+store/user.selectors';
 import { IUser } from '../models/user-model';
@@ -19,10 +19,12 @@ import { UserServiceService } from '../services/user-service.service';
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css'],
 })
-export class CreateUserComponent implements OnInit {
+export class CreateUserComponent implements OnInit, OnDestroy {
   addUserForm: FormGroup;
   isEdit = false;
   userId!: number;
+
+  destroy$ = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
@@ -48,17 +50,20 @@ export class CreateUserComponent implements OnInit {
 
     this.store.dispatch(UserActions.loadUsers());
 
-    this.route.params.subscribe((params) => {
+    this.route.params.pipe(takeUntil(this.destroy$)).subscribe((params) => {
       this.userId = params['userId'];
 
       if (this.userId) {
         this.isEdit = true;
-        this.userService.getUserById(this.userId).subscribe((user) => {
-          if (user) {
-            console.log(user);
-            this.populateForm(user);
-          }
-        });
+        this.userService
+          .getUserById(this.userId)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((user) => {
+            if (user) {
+              console.log(user);
+              this.populateForm(user);
+            }
+          });
       }
     });
 
@@ -197,5 +202,9 @@ export class CreateUserComponent implements OnInit {
     }
 
     this.addUserForm.controls['username'].updateValueAndValidity();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
   }
 }
