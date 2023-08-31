@@ -1,5 +1,5 @@
 <div class="create-user-container">
-  <h2 class="heading">Add New User</h2>
+  <h2 class="heading">{{ !isEdit ? "Add New User" : "Edit User" }}</h2>
   <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()" class="user-form">
     <div class="form-group">
       <label for="username">Username</label>
@@ -113,7 +113,11 @@
       class="submit-button"
       [disabled]="addUserForm.invalid"
     >
-      Add User
+      {{ !isEdit ? "Add User" : "Edit User" }}
     </button>
   </form>
+</div>
+
+<div *ngIf="successMessage$ | async as successMessage" class="success-message">
+  {{ successMessage }}
 </div>

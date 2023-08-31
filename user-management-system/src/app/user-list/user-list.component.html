@@ -37,3 +37,7 @@
 <button class="create-button" [routerLink]="['create-user']">
   Create New User
 </button>
+
+<div *ngIf="successMessage$ | async as successMessage" class="success-message">
+  {{ successMessage }}
+</div>

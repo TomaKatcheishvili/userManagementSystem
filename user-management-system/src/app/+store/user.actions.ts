@@ -44,3 +44,5 @@ export const deleteUserFailure = createAction(
   '[User] Delete User Failure',
   props<{ error: any }>()
 );
+
+export const clearSuccessMessage = createAction('[User] Clear Success Message');

@@ -9,3 +9,8 @@ export const selectUsers = createSelector(
   selectUserState,
   (state: UserState) => state.users
 );
+
+export const selectSuccessMessage = createSelector(
+  selectUserState,
+  (state: UserState) => state.successMessage
+);

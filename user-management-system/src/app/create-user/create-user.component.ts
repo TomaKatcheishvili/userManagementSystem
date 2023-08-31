@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Subject, take, takeUntil } from 'rxjs';
 import * as UserActions from '../+store/user.actions';
-import { selectUsers } from '../+store/user.selectors';
+import { selectSuccessMessage, selectUsers } from '../+store/user.selectors';
 import { IUser } from '../models/user-model';
 import { UserServiceService } from '../services/user-service.service';
 
@@ -19,12 +19,14 @@ import { UserServiceService } from '../services/user-service.service';
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css'],
 })
-export class CreateUserComponent implements OnDestroy {
+export class CreateUserComponent implements OnDestroy, OnInit {
   addUserForm: FormGroup;
   isEdit = false;
   userId!: number;
 
   destroy$ = new Subject<void>();
+
+  successMessage$ = this.store.select(selectSuccessMessage);
 
   constructor(
     private fb: FormBuilder,
@@ -68,6 +70,9 @@ export class CreateUserComponent implements OnDestroy {
 
     this.addCustomValidators();
   }
+  ngOnInit(): void {
+    this.clearSuccessMessage();
+  }
 
   onSubmit() {
     if (this.isEdit) {
@@ -76,6 +81,7 @@ export class CreateUserComponent implements OnDestroy {
           ...this.addUserForm.value,
           userId: this.userId,
         };
+        editedUser.logs = [{ date: new Date(), action: 'User edited' }];
         this.store.dispatch(
           UserActions.editUser({
             user: editedUser,
@@ -187,6 +193,12 @@ export class CreateUserComponent implements OnDestroy {
       });
       emailControls.updateValueAndValidity();
     }
+  }
+
+  clearSuccessMessage() {
+    setTimeout(() => {
+      this.store.dispatch(UserActions.clearSuccessMessage());
+    }, 5000);
   }
 
   ngOnDestroy(): void {

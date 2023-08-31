@@ -8,7 +8,7 @@ import {
 import { Store } from '@ngrx/store';
 import { Subject, takeUntil } from 'rxjs';
 import * as UserActions from '../+store/user.actions';
-import { selectUsers } from '../+store/user.selectors';
+import { selectSuccessMessage, selectUsers } from '../+store/user.selectors';
 import { IUser } from '../models/user-model';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 
@@ -21,6 +21,8 @@ export class UserListComponent implements OnInit, OnDestroy {
   users!: IUser[];
   selectedUser: IUser | undefined;
 
+  successMessage$ = this.store.select(selectSuccessMessage);
+
   destroy$ = new Subject<void>();
 
   @ViewChildren(UserProfileComponent)
@@ -30,7 +32,9 @@ export class UserListComponent implements OnInit, OnDestroy {
     this.getUsers();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.clearSuccessMessage();
+  }
 
   navigateToUserProfile(user: IUser) {
     this.selectedUser = user;
@@ -49,6 +53,12 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   deleteUser(userId: number) {
     this.store.dispatch(UserActions.deleteUser({ userId }));
+  }
+
+  clearSuccessMessage() {
+    setTimeout(() => {
+      this.store.dispatch(UserActions.clearSuccessMessage());
+    }, 5000);
   }
 
   ngOnDestroy(): void {
