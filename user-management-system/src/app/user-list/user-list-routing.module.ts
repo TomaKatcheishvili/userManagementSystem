@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CreateUserResolver } from '../resolvers/create-user.reslover';
 import { UserListComponent } from './user-list.component';
 import { UserLogsSidebarComponent } from './user-logs-sidebar/user-logs-sidebar.component';
 
@@ -21,6 +22,9 @@ const routes: Routes = [
       import('../create-user/create-user.module').then(
         (m) => m.CreateUserModule
       ),
+    resolve: {
+      userData: CreateUserResolver,
+    },
   },
   {
     path: 'edit-user/:userId',
@@ -28,6 +32,9 @@ const routes: Routes = [
       import('../create-user/create-user.module').then(
         (m) => m.CreateUserModule
       ),
+    resolve: {
+      userData: CreateUserResolver,
+    },
   },
 ];
 
