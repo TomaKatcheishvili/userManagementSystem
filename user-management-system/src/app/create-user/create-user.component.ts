@@ -131,13 +131,11 @@ export class CreateUserComponent implements OnDestroy, OnInit {
   }
 
   uniqueEmailsValidator(control: AbstractControl) {
-    const emailArray = control.value;
-
     return this.store.select(selectUsers).pipe(
       take(1),
       map((users) => {
         const isTaken = users.some((user) =>
-          user.emails.some((r) => emailArray.indexOf(r) >= 0)
+          user.emails.includes(control.value)
         );
         return isTaken ? { uniqueEmails: true } : null;
       })
@@ -203,5 +201,6 @@ export class CreateUserComponent implements OnDestroy, OnInit {
 
   ngOnDestroy(): void {
     this.destroy$.next();
+    this.store.dispatch(UserActions.clearSuccessMessage());
   }
 }

@@ -1,43 +1,46 @@
 {
   "users": [
     {
-      "username": "asdasd",
-      "firstName": "Toma",
-      "lastName": "Katcheishvili",
+      "username": "Test",
+      "firstName": "Test",
+      "lastName": "Test",
       "emails": [
-        "asdasdasd@asdasd",
-        "asdasdas@asdasd"
+        "test@test",
+        "test2@test2"
       ],
       "phoneNumbers": [
-        "123123123"
+        "123456",
+        "654321"
       ],
       "isActive": true,
-      "userId": "1",
       "logs": [
         {
-          "date": "2023-08-31T07:15:35.808Z",
-          "action": "User edited"
+          "date": "2023-08-31T07:48:45.680Z",
+          "action": "User created"
         }
       ],
       "id": 1
     },
     {
-      "username": "JohnJohn",
-      "firstName": "John",
-      "lastName": "Smith",
+      "username": "toma",
+      "firstName": "toma",
+      "lastName": "toma",
       "emails": [
-        "johnsmith@gmail.com",
-        "john@gmail.com"
+        "asdasda@asdad",
+        "asdasda@asdasd",
+        "asdasd@asdasdasdasd"
       ],
       "phoneNumbers": [
-        "12345678",
-        "1234567890"
+        "123123",
+        "12312312",
+        "123123123"
       ],
-      "isActive": true,
+      "isActive": false,
+      "userId": "2",
       "logs": [
         {
-          "date": "2023-08-29T15:18:32.694Z",
-          "action": "User created"
+          "date": "2023-08-31T07:51:28.539Z",
+          "action": "User edited"
         }
       ],
       "id": 2

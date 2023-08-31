@@ -63,5 +63,6 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.destroy$.next();
+    this.store.dispatch(UserActions.clearSuccessMessage());
   }
 }
