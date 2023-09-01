@@ -6,5 +6,12 @@
     "PHONE_NUMBER": "Phone Number",
     "ACTIVE": "Active",
     "NO_USER_SELECTED": "No User Selected"
+  },
+  "USER_LIST": {
+    "USER_ITEMS": "Usuario",
+    "SEE_USER": "See User",
+    "DELETE_USER": "Delete User",
+    "EDIT_USER": "Edit User",
+    "CREATE_NEW_USER": "Create New User"
   }
 }

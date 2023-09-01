@@ -4,9 +4,7 @@ import { UserListRoutingModule } from './user-list-routing.module';
 import { UserLogsSidebarComponent } from './user-logs-sidebar/user-logs-sidebar.component';
 
 @NgModule({
-  declarations: [
-    UserLogsSidebarComponent
-  ],
+  declarations: [UserLogsSidebarComponent],
   imports: [CommonModule, UserListRoutingModule],
 })
 export class UserListModule {}

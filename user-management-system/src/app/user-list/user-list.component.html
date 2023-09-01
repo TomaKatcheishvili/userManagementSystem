@@ -8,19 +8,19 @@
 
         <div class="user-actions">
           <button class="action-button" (click)="navigateToUserProfile(user)">
-            See User
+            {{ "USER_LIST.SEE_USER" | translate }}
           </button>
           <button
             class="action-button delete-button"
             (click)="deleteUser(user.id)"
           >
-            Delete User
+            {{ "USER_LIST.DELETE_USER" | translate }}
           </button>
           <button
             class="action-button edit-button"
             [routerLink]="['edit-user', user.id]"
           >
-            Edit User
+            {{ "USER_LIST.EDIT_USER" | translate }}
           </button>
         </div>
       </li>
@@ -35,7 +35,7 @@
 </div>
 
 <button class="create-button" [routerLink]="['create-user']">
-  Create New User
+  {{ "USER_LIST.CREATE_NEW_USER" | translate }}
 </button>
 
 <div *ngIf="successMessage$ | async as successMessage" class="success-message">
