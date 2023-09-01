@@ -11,10 +11,9 @@ export class UserEffects {
     this.actions$.pipe(
       ofType(UserActions.loadUsers),
       mergeMap(() =>
-        this.userService.getUsers().pipe(
-          map((users) => UserActions.loadUsersSuccess({ users })),
-          catchError((error) => of(/* Handle error action here */))
-        )
+        this.userService
+          .getUsers()
+          .pipe(map((users) => UserActions.loadUsersSuccess({ users })))
       )
     )
   );
@@ -36,9 +35,8 @@ export class UserEffects {
       ofType(UserActions.editUser),
       mergeMap(({ user, userId }) =>
         this.userService.editUser(user, userId).pipe(
-          map(
-            (editedUser) =>
-              UserActions.editUserSucess({ user: editedUser, userId }) // Use userId
+          map((editedUser) =>
+            UserActions.editUserSucess({ user: editedUser, userId })
           ),
           catchError((error) => of(UserActions.editUserFailure({ error })))
         )

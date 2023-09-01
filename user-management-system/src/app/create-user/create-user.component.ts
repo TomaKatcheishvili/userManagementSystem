@@ -193,14 +193,18 @@ export class CreateUserComponent implements OnDestroy, OnInit {
     }
   }
 
-  clearSuccessMessage() {
+  private clearSuccessMessage(): void {
+    this.store.dispatch(UserActions.clearSuccessMessage());
+  }
+
+  clearSuccessMessageAfterTime() {
     setTimeout(() => {
-      this.store.dispatch(UserActions.clearSuccessMessage());
+      this.clearSuccessMessage();
     }, 5000);
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
-    this.store.dispatch(UserActions.clearSuccessMessage());
+    this.clearSuccessMessage();
   }
 }
